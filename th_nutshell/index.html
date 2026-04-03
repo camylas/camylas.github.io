@@ -1,9 +1,49 @@
-<script src="https://cdn.jsdelivr.net/gh/ncase/nutshell/nutshell.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Nutshell Markdown</title>
+    
+    <!-- 1. Load Marked.js to translate your Markdown into HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@4/marked.min.js"></script>
+    
+    <style>
+        /* A little bit of styling to make your text readable out of the box */
+        body { font-family: sans-serif; max-width: 650px; margin: 40px auto; line-height: 1.6; }
+    </style>
+</head>
+<body>
 
-# Título
+    <!-- 2. This empty div is where your final text will appear -->
+    <div id="content"></div>
 
-Texto aleátorio aqui para teste
+    <!-- 3. WRITE YOUR MARKDOWN HERE -->
+    <script type="text/markdown" id="my-markdown">
+# My Expandable Essay
 
-# Bom dia
+Nutshell is awesome for making [expandable explanations](#what-is-this). 
 
-Bodia
+## What is this?
+Nutshell lets you click a link and open a little window of text right inside the paragraph! You can even nest [more explanations](#nesting) inside it.
+
+## Nesting
+Nesting means putting one thing inside another thing. It's like a Russian nesting doll.
+
+## :x Hidden Section
+Because this heading starts with `:x`, it won't show up in the normal flow of the page. It remains completely invisible unless you link to it, like [this secret link](#x-hidden-section)!
+    </script>
+
+    <!-- 4. The script that runs the markdown translation -->
+    <script>
+        // Grab your Markdown text from the block above
+        const mdText = document.getElementById('my-markdown').textContent;
+        // Convert it to HTML and inject it into the page
+        document.getElementById('content').innerHTML = marked.parse(mdText);
+    </script>
+
+    <!-- 5. Load Nutshell AFTER the markdown is rendered so it can find the links! -->
+    <script src="https://cdn.jsdelivr.net/gh/ncase/nutshell/nutshell.js"></script>
+
+</body>
+</html>
